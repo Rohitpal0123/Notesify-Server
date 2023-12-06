@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
-router.get("/get", require("../controllers/Transcript/get").process);
+
+router.post("/add", require("../controllers/Notes/add").process);
 
 module.exports = router;

@@ -17,8 +17,11 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-const transcriptRouter = require("./routes/transcript");
+const transcriptRouter = require("./routes/speechToText");
+const notesRouter = require("./routes/notes");
+
 app.use("/transcript", transcriptRouter);
+app.use("/notes", notesRouter);
 app.use("/", (req, res) => {
   res.send("Welcome to Notesify !");
 });
