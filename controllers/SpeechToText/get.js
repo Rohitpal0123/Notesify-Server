@@ -1,6 +1,7 @@
 const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -11,7 +12,7 @@ class getTranscript {
         return res.status(400).json({ error: "No file uploaded" });
       }
       // Write the file to disk
-      const filePath = path.join(__dirname, req.file.originalname);
+      const filePath = path.join(os.tmpdir(), req.file.originalname); // Modify this line
       fs.writeFileSync(filePath, req.file.buffer);
 
       const transcription = await openai.audio.transcriptions.create({
