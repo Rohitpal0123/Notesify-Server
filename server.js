@@ -19,9 +19,11 @@ connection.once("open", () => {
 
 const transcriptRouter = require("./routes/speechToText");
 const notesRouter = require("./routes/notes");
+const userRouter = require("./routes/user");
 
 app.use("/transcript", transcriptRouter);
 app.use("/notes", notesRouter);
+app.use("/user", userRouter);
 app.use("/", (req, res) => {
   res.send("Welcome to Notesify !");
 });
