@@ -8,7 +8,7 @@ const notesSchema = new Schema(
       ref: "user",
       required: true
     },
-    name: {
+    tile: {
       type: String,
       required: true
     },
