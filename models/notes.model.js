@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const notesSchema = new Schema(
   {
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
       required: true
     },
-    tile: {
+    title: {
       type: String,
       required: true
     },

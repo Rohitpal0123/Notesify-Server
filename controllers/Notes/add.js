@@ -1,11 +1,22 @@
 const Notes = require("../../models/notes.model");
 
 class addNotes {
+  async notesExists(userId, title) {
+    try {
+      const notesExists = await Notes.findOne({ userId: userId, title: title });
+      if (notesExists != null) throw "Notes with given title already exists !";
+    } catch (error) {
+      console.log("🚀 ~ error:", error);
+      throw error;
+    }
+  }
   process = async (req, res) => {
     try {
-      const { name, description, notes } = req.body;
+      const { userId, title, description, notes } = req.body;
+      await this.notesExists(userId, title);
       const newNotes = await Notes.create({
-        name,
+        userId,
+        title,
         description,
         notes
       });
