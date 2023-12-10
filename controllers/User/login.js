@@ -18,11 +18,9 @@ class loginUser {
       const { email, password } = req.body;
 
       const user = await this.userExists(email);
-      console.log("🚀 ~ user:", user);
 
       const isPassword = await bcrypt.compare(password, user.password);
       console.log("🚀 ~ isPassword:", isPassword);
-      if (!isPassword) throw "Invaild Password !";
 
       res.status(200).json({
         firstName: user.firstName,
@@ -32,7 +30,6 @@ class loginUser {
         token: generateToken(user._id)
       });
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };
