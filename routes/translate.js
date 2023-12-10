@@ -6,10 +6,10 @@ const authenticateUser = require("../middleware/authMiddleware");
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.post(
-  "/transcriptAudio",
+  "/translateAudio",
   authenticateUser,
   upload.single("audio"),
-  require("../controllers/Transcript/transcriptAudio").process
+  require("../controllers/Translate/translateAudio").process
 );
 
 module.exports = router;
