@@ -25,7 +25,6 @@ class getTranscript {
 
       res.status(200).json({ notes: transcription.text });
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };

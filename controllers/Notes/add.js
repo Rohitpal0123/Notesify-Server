@@ -6,7 +6,6 @@ class addNotes {
       const notesExists = await Notes.findOne({ userId: userId, title: title });
       if (notesExists != null) throw "Notes with given title already exists !";
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       throw error;
     }
   }
@@ -25,7 +24,6 @@ class addNotes {
 
       res.status(400).json(newNotes);
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };
