@@ -9,7 +9,7 @@ router.get(
   "/get",
   authenticateUser,
   upload.single("audio"),
-  require("../controllers/SpeechToText/get").process
+  require("../controllers/Transcript/transcriptAudio").process
 );
 
 module.exports = router;
