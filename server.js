@@ -18,10 +18,12 @@ connection.once("open", () => {
 });
 
 const transcriptRouter = require("./routes/transcript");
+const translateRouter = require("./routes/translate");
 const notesRouter = require("./routes/notes");
 const userRouter = require("./routes/user");
 
 app.use("/transcript", transcriptRouter);
+app.use("/translate", translateRouter);
 app.use("/notes", notesRouter);
 app.use("/user", userRouter);
 app.use("/", (req, res) => {
