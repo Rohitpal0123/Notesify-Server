@@ -10,7 +10,6 @@ class loginUser {
 
       return userExists;
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       throw error;
     }
   }
@@ -27,11 +26,10 @@ class loginUser {
         firstName: user.firstName,
         lastName: user.lastName,
         userName: user.userName,
-        email: user.eamil,
+        email: user.email,
         token: generateToken(user._id)
       });
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };

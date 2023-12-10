@@ -10,7 +10,6 @@ class deleteNotes {
 
       res.status(200).json(deletedNotes);
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };
