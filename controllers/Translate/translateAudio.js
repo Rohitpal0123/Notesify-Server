@@ -5,7 +5,7 @@ const os = require("os");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-class getTranscript {
+class translateAudio {
   process = async (req, res) => {
     try {
       if (!req.file) {
@@ -31,4 +31,4 @@ class getTranscript {
   };
 }
 
-module.exports = new getTranscript();
+module.exports = new translateAudio();
