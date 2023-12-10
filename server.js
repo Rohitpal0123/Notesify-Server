@@ -17,7 +17,7 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-const transcriptRouter = require("./routes/speechToText");
+const transcriptRouter = require("./routes/transcript");
 const notesRouter = require("./routes/notes");
 const userRouter = require("./routes/user");
 
