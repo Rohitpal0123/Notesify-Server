@@ -8,7 +8,6 @@ class signupUser {
       const userNameExists = await User.findOne({ email: email });
       if (userNameExists != null) throw "Username already exists !";
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       throw error;
     }
   }
@@ -17,7 +16,6 @@ class signupUser {
       const emailExists = await User.findOne({ email: email });
       if (emailExists != null) throw "Email is already used !";
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       throw error;
     }
   }
@@ -50,7 +48,6 @@ class signupUser {
         token: generateToken(newUser._id)
       });
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };
