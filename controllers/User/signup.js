@@ -1,7 +1,7 @@
 const User = require("../../models/user.model");
 const bcrypt = require("bcryptjs");
 const generateToken = require("./generateToken");
-const validate = require("../../lib/validator");
+const validate = require("../../lib/jsonValidator");
 const signupUserSchema = require("../../jsonschema/User/signup");
 const RESPONSE_MESSAGE = require("../../lib/responseCode");
 

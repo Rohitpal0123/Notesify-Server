@@ -1,5 +1,5 @@
 const Notes = require("../../models/notes.model");
-const validate = require("../../lib/validator");
+const validate = require("../../lib/jsonValidator");
 const deleteAllNotesSchema = require("../../jsonschema/Notes/deleteAll");
 const RESPONSE_MESSAGE = require("../../lib/responseCode");
 class deleteAllNotes {
