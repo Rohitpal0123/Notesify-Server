@@ -10,7 +10,6 @@ class loginUser {
 
       return userExists;
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       throw error;
     }
   }
@@ -21,17 +20,16 @@ class loginUser {
       const user = await this.userExists(email);
 
       const isPassword = await bcrypt.compare(password, user.password);
-      if (!isPassword) throw "Invaild Password !";
+      console.log("🚀 ~ isPassword:", isPassword);
 
       res.status(200).json({
         firstName: user.firstName,
         lastName: user.lastName,
         userName: user.userName,
-        email: user.eamil,
+        email: user.email,
         token: generateToken(user._id)
       });
     } catch (error) {
-      console.log("🚀 ~ error:", error);
       res.status(400).json(error);
     }
   };

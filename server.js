@@ -17,11 +17,15 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-const transcriptRouter = require("./routes/speechToText");
+const transcriptRouter = require("./routes/transcript");
+const translateRouter = require("./routes/translate");
+const speechRouter = require("./routes/speech");
 const notesRouter = require("./routes/notes");
 const userRouter = require("./routes/user");
 
 app.use("/transcript", transcriptRouter);
+app.use("/translate", translateRouter);
+app.use("/speech", speechRouter);
 app.use("/notes", notesRouter);
 app.use("/user", userRouter);
 app.use("/", (req, res) => {

@@ -5,7 +5,7 @@ const os = require("os");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-class getTranscript {
+class translateAudio {
   process = async (req, res) => {
     try {
       if (!req.file) {
@@ -15,7 +15,7 @@ class getTranscript {
       const filePath = path.join(os.tmpdir(), req.file.originalname); // Modify this line
       fs.writeFileSync(filePath, req.file.buffer);
 
-      const transcription = await openai.audio.transcriptions.create({
+      const transcription = await openai.audio.translations.create({
         file: fs.createReadStream(filePath),
         model: "whisper-1"
       });
@@ -31,4 +31,4 @@ class getTranscript {
   };
 }
 
-module.exports = new getTranscript();
+module.exports = new translateAudio();
