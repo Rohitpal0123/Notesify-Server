@@ -1,8 +1,11 @@
 const Notes = require("../../models/notes.model");
-
+const validate = require("../../lib/validator");
+const deleteAllNotesSchema = require("../../jsonschema/Notes/deleteAll");
+const RESPONSE_MESSAGE = require("../../lib/responseCode");
 class deleteAllNotes {
   process = async (req, res) => {
     try {
+      validate(req.body, deleteAllNotesSchema);
       const { userId } = req.body;
 
       const deletedNotes = await Notes.deleteMany({ userId: userId });
