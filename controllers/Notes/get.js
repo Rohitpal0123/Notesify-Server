@@ -11,9 +11,15 @@ class getNotes {
       const notes = await Notes.find({ userId: userId, title: title });
       if (!notes) throw "Notes not found !";
 
-      res.status(200).json(notes);
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: notes
+      });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.FAILED,
+        error: error
+      });
     }
   };
 }

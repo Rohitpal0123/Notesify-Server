@@ -25,9 +25,15 @@ class addNotes {
 
       if (!newNotes) throw "Notes not added !";
 
-      res.status(400).json(newNotes);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: newNotes
+      });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.FAILED,
+        error: error
+      });
     }
   };
 }

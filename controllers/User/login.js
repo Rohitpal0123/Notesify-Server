@@ -26,15 +26,22 @@ class loginUser {
       const isPassword = await bcrypt.compare(password, user.password);
       console.log("🚀 ~ isPassword:", isPassword);
 
-      res.status(200).json({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        userName: user.userName,
-        email: user.email,
-        token: generateToken(user._id)
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          email: user.email,
+          token: generateToken(user._id)
+        }
       });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.LOGIN_FAILED,
+        error: error
+      });
     }
   };
 }

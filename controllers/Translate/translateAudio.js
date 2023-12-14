@@ -2,6 +2,7 @@ const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+const RESPONSE_MESSAGE = require("../../lib/responseCode");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -15,7 +16,7 @@ class translateAudio {
       const filePath = path.join(os.tmpdir(), req.file.originalname); // Modify this line
       fs.writeFileSync(filePath, req.file.buffer);
 
-      const transcription = await openai.audio.translations.create({
+      const translation = await openai.audio.translations.create({
         file: fs.createReadStream(filePath),
         model: "whisper-1"
       });
@@ -23,10 +24,15 @@ class translateAudio {
       // Delete the file after processing
       fs.unlinkSync(filePath);
 
-      res.status(200).json({ notes: transcription.text });
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: translation
+      });
     } catch (error) {
-      console.log("🚀 ~ error:", error);
-      res.status(400).json(error);
+      res.status(400).json({
+        type: RESPONSE_MESSAGE.FAILED,
+        data: error
+      });
     }
   };
 }

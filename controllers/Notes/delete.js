@@ -12,9 +12,15 @@ class deleteNotes {
       const deletedNotes = await Notes.deleteOne({ _id: id });
       if (!deletedNotes) throw "Notes not deleted !";
 
-      res.status(200).json(deletedNotes);
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: deletedNotes
+      });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.FAILED,
+        error: error
+      });
     }
   };
 }
