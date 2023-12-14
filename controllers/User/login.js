@@ -1,6 +1,9 @@
 const User = require("../../models/user.model");
 const bcrypt = require("bcryptjs");
 const generateToken = require("./generateToken");
+const validate = require("../../lib/jsonValidator");
+const loginUserSchema = require("../../jsonschema/User/login");
+const RESPONSE_MESSAGE = require("../../lib/responseCode");
 
 class loginUser {
   async userExists(email) {
@@ -15,12 +18,12 @@ class loginUser {
   }
   process = async (req, res) => {
     try {
+      validate(req.body, loginUserSchema);
       const { email, password } = req.body;
 
       const user = await this.userExists(email);
 
       const isPassword = await bcrypt.compare(password, user.password);
-      console.log("🚀 ~ isPassword:", isPassword);
 
       res.status(200).json({
         firstName: user.firstName,

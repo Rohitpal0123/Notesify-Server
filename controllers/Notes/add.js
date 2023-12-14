@@ -1,5 +1,7 @@
 const Notes = require("../../models/notes.model");
-
+const validate = require("../../lib/jsonValidator");
+const addNotesSchema = require("../../jsonschema/Notes/add");
+const RESPONSE_MESSAGE = require("../../lib/responseCode");
 class addNotes {
   async notesExists(userId, title) {
     try {
@@ -11,6 +13,7 @@ class addNotes {
   }
   process = async (req, res) => {
     try {
+      validate(req.body, addNotesSchema);
       const { userId, title, description, notes } = req.body;
       await this.notesExists(userId, title);
       const newNotes = await Notes.create({
