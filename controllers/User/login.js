@@ -24,7 +24,6 @@ class loginUser {
       const user = await this.userExists(email);
 
       const isPassword = await bcrypt.compare(password, user.password);
-      console.log("🚀 ~ isPassword:", isPassword);
 
       res.status(200).json({
         firstName: user.firstName,

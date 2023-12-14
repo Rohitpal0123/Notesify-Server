@@ -2,6 +2,7 @@ const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+const validate = require("../../lib/fileValidator");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -11,6 +12,13 @@ class generateSpeech {
       if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
       }
+
+      const allowedExtensions = ["txt"];
+      const allowedMIMEType = ["audio/txt"];
+      const allowedFileSize = 100;
+
+      validate(req.file, allowedExtensions, allowedMIMEType, allowedFileSize);
+
       const filePath = path.join(os.tmpdir(), req.file.originalname);
       fs.writeFileSync(filePath, req.file.buffer);
 
