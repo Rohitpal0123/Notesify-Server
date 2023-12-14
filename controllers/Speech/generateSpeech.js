@@ -2,7 +2,9 @@ const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+const RESPONSE_MESSAGE = require("../../lib/responseCode");
 const validate = require("../../lib/fileValidator");
+
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -37,9 +39,15 @@ class generateSpeech {
       res.setHeader("Content-Type", "audio/mpeg");
       res.setHeader("Content-Disposition", "attachment; filename=speech.mp3");
 
-      res.status(200).send(buffer);
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: buffer
+      });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.FAILED,
+        error: error
+      });
     }
   };
 }
