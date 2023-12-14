@@ -11,9 +11,15 @@ class updateNotes {
       const updatedNotes = await Notes.updateOne({ _id: id }, { notes: notes });
       if (!updatedNotes) throw "Notes not upadted !";
 
-      res.status(200).json(updatedNotes);
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: updatedNotes
+      });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.FAILED,
+        error: error
+      });
     }
   };
 }

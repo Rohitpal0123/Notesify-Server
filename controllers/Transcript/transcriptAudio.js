@@ -2,7 +2,11 @@ const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+
+const RESPONSE_MESSAGE = require("../../lib/responseCode");
+
 const validate = require("../../lib/fileValidator");
+
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -49,9 +53,15 @@ class generateTranscript {
       // Delete the file after processing
       fs.unlinkSync(filePath);
 
-      res.status(200).json({ notes: transcription.text });
+      res.status(200).send({
+        type: RESPONSE_MESSAGE.SUCCESS,
+        data: transcription
+      });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send({
+        type: RESPONSE_MESSAGE.FAILED,
+        error: error
+      });
     }
   };
 }
