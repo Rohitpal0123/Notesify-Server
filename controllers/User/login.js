@@ -1,7 +1,7 @@
 const User = require("../../models/user.model");
 const bcrypt = require("bcryptjs");
 const generateToken = require("./generateToken");
-const validate = require("../../lib/validator");
+const validate = require("../../lib/jsonValidator");
 const loginUserSchema = require("../../jsonschema/User/login");
 const RESPONSE_MESSAGE = require("../../lib/responseCode");
 
@@ -24,7 +24,6 @@ class loginUser {
       const user = await this.userExists(email);
 
       const isPassword = await bcrypt.compare(password, user.password);
-      console.log("🚀 ~ isPassword:", isPassword);
 
       res.status(200).send({
         type: RESPONSE_MESSAGE.SUCCESS,
