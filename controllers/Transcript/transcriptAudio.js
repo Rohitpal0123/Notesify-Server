@@ -55,6 +55,7 @@ class generateTranscript {
         data: transcription
       });
     } catch (error) {
+      console.log("🚀 ~ error:", error);
       res.status(400).send({
         type: RESPONSE_MESSAGE.FAILED,
         error: error
