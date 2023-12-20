@@ -2,11 +2,8 @@ const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
-
 const RESPONSE_MESSAGE = require("../../lib/responseCode");
-
 const validate = require("../../lib/fileValidator");
-
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 

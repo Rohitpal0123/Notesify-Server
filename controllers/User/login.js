@@ -24,6 +24,7 @@ class loginUser {
       const user = await this.userExists(email);
 
       const isPassword = await bcrypt.compare(password, user.password);
+      if (!isPassword) throw "Invalid password !";
 
       res.status(200).send({
         type: RESPONSE_MESSAGE.SUCCESS,

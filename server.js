@@ -22,12 +22,14 @@ const translateRouter = require("./routes/translate");
 const speechRouter = require("./routes/speech");
 const notesRouter = require("./routes/notes");
 const userRouter = require("./routes/user");
+const chatRouter = require("./routes/chat");
 
 app.use("/transcript", transcriptRouter);
 app.use("/translate", translateRouter);
 app.use("/speech", speechRouter);
 app.use("/notes", notesRouter);
 app.use("/user", userRouter);
+app.use("/chat", chatRouter);
 app.use("/", (req, res) => {
   res.send("Welcome to Notesify !");
 });
