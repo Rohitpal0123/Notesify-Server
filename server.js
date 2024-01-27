@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000;
 
 app.use(
   cors({
-    origin: "https://sahil1gupta.github.io", // replace with your client's origin
+    origin: "https://notesify-three.vercel.app", // replace with your client's origin
   }),
 );
 app.use(express.json());
