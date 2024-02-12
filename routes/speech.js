@@ -8,7 +8,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 router.post(
   "/generateSpeech",
   authenticateUser,
-  upload.single("text"),
+  upload.single("audio"),
   require("../controllers/Speech/generateSpeech").process
 );
 
