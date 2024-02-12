@@ -38,10 +38,7 @@ class generateSpeech {
       res.setHeader("Content-Type", "audio/mpeg");
       res.setHeader("Content-Disposition", "attachment; filename=speech.mp3");
 
-      res.status(200).send({
-        type: RESPONSE_MESSAGE.SUCCESS,
-        data: buffer,
-      });
+      res.status(200).send(buffer);
     } catch (error) {
       res.status(400).send({
         type: RESPONSE_MESSAGE.FAILED,
