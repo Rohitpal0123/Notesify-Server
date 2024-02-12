@@ -5,7 +5,6 @@ const os = require("os");
 const RESPONSE_MESSAGE = require("../../lib/responseCode");
 const validate = require("../../lib/fileValidator");
 
-
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 class generateSpeech {
@@ -16,7 +15,7 @@ class generateSpeech {
       }
 
       const allowedExtensions = ["txt"];
-      const allowedMIMEType = ["audio/txt"];
+      const allowedMIMEType = ["text/plain"];
       const allowedFileSize = 100;
 
       validate(req.file, allowedExtensions, allowedMIMEType, allowedFileSize);
@@ -29,7 +28,7 @@ class generateSpeech {
       const mp3 = await openai.audio.speech.create({
         model: "tts-1",
         voice: "alloy",
-        input: text
+        input: text,
       });
 
       fs.unlinkSync(filePath);
@@ -41,12 +40,12 @@ class generateSpeech {
 
       res.status(200).send({
         type: RESPONSE_MESSAGE.SUCCESS,
-        data: buffer
+        data: buffer,
       });
     } catch (error) {
       res.status(400).send({
         type: RESPONSE_MESSAGE.FAILED,
-        error: error
+        error: error,
       });
     }
   };
