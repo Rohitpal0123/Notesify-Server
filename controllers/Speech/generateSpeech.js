@@ -13,13 +13,13 @@ class generateSpeech {
       if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
       }
-
+      console.log("Hit1")
       const allowedExtensions = ["txt"];
       const allowedMIMEType = ["text/plain"];
       const allowedFileSize = 100;
 
       validate(req.file, allowedExtensions, allowedMIMEType, allowedFileSize);
-
+      console.log("Hit2")
       const filePath = path.join(os.tmpdir(), req.file.originalname);
       fs.writeFileSync(filePath, req.file.buffer);
 
@@ -32,12 +32,12 @@ class generateSpeech {
       });
 
       fs.unlinkSync(filePath);
-
+      console.log("Hit3")
       const buffer = Buffer.from(await mp3.arrayBuffer());
 
       res.setHeader("Content-Type", "audio/mpeg");
       res.setHeader("Content-Disposition", "attachment; filename=speech.mp3");
-
+      console.log("Hit4")
       res.status(200).send(buffer);
     } catch (error) {
       res.status(400).send({
