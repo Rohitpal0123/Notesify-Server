@@ -9,8 +9,9 @@ const port = process.env.PORT || 8000;
 
 app.use(
   cors({
-    origin: "https://notesify-three.vercel.app", // replace with your client's origin
-  }),
+    origin: "*",
+    credentials: true,
+  })
 );
 app.use(express.json());
 
