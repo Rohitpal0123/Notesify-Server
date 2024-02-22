@@ -26,6 +26,7 @@ class signupUser {
     try {
       // validate(req.body, signupUserSchema);
       const { firstName, lastName, userName, email, password } = req.body;
+      console.log("🚀 ~ req.body:", req.body);
 
       await this.emailExists(email);
       await this.userNameExists(userName);
