@@ -24,7 +24,7 @@ class signupUser {
   }
   process = async (req, res) => {
     try {
-      validate(req.body, signupUserSchema);
+      // validate(req.body, signupUserSchema);
       const { firstName, lastName, userName, email, password } = req.body;
 
       await this.emailExists(email);
