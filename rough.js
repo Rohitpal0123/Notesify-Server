@@ -1,6 +1,6 @@
 const axios = require("./lib/axios");
 
-const url = "https://notesify-server.vercel.app/user/login";
+const url = "https://notesify-server.vercel.app/user/signup";
 const method = "post";
 const headers = {
   "Content-Type": "application/json",
@@ -8,8 +8,11 @@ const headers = {
 };
 
 const data = {
-  email: "mansi@gmail.com",
-  password: "mansidongre",
+  firstName: "golu",
+  lastName: "gupta",
+  userName: "golua",
+  email: "himanshu@gmail.com",
+  password: "golugupta",
 };
 
 const responseType = "json";
