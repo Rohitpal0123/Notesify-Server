@@ -21,7 +21,7 @@ class generateTranscript {
         "mpga",
         "m4a",
         "wav",
-        "webm"
+        "webm",
       ];
 
       const allowedMIMEType = [
@@ -31,7 +31,7 @@ class generateTranscript {
         "audio/mpga",
         "audio/m4a",
         "audio/wav",
-        "audio/webm"
+        "audio/webm",
       ];
 
       const allowedFileSize = 25;
@@ -44,20 +44,19 @@ class generateTranscript {
 
       const transcription = await openai.audio.transcriptions.create({
         file: fs.createReadStream(filePath),
-        model: "whisper-1"
+        model: "whisper-1",
       });
 
-      // Delete the file after processing
+      // Delete the file after processing to avoid unnecessary
       fs.unlinkSync(filePath);
-
       res.status(200).send({
         type: RESPONSE_MESSAGE.SUCCESS,
-        data: transcription
+        data: transcription,
       });
     } catch (error) {
       res.status(400).send({
         type: RESPONSE_MESSAGE.FAILED,
-        error: error
+        error: error,
       });
     }
   };

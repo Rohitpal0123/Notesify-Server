@@ -24,8 +24,9 @@ class signupUser {
   }
   process = async (req, res) => {
     try {
-      validate(req.body, signupUserSchema);
+      // validate(req.body, signupUserSchema);
       const { firstName, lastName, userName, email, password } = req.body;
+      console.log("🚀 ~ req.body:", req.body);
 
       await this.emailExists(email);
       await this.userNameExists(userName);
@@ -38,7 +39,7 @@ class signupUser {
         lastName: lastName,
         userName: userName,
         email: email,
-        password: hashedPassword
+        password: hashedPassword,
       });
 
       if (!newUser) throw "User not signed up !";
@@ -51,13 +52,14 @@ class signupUser {
           lastName: lastName,
           userName: userName,
           email: newUser.email,
-          token: generateToken(newUser._id)
-        }
+          token: generateToken(newUser._id),
+        },
       });
     } catch (error) {
+      console.log("🚀 ~ error:", error);
       res.status(400).send({
         type: RESPONSE_MESSAGE.FAILED,
-        error: error
+        error: error,
       });
     }
   };

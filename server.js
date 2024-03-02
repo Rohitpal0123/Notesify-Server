@@ -13,6 +13,7 @@ app.use(
       "https://rohitpal0123.github.io",
       "https://notesify-three.vercel.app",
     ],
+
     credentials: true,
   })
 );
