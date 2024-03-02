@@ -7,7 +7,15 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://rohitpal0123.github.io",
+      "https://notesify-three.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
