@@ -44,13 +44,16 @@ class signupUser {
 
       if (!newUser) throw "User not signed up !";
       
-      const token = JSON.stringify(generateToken(newUser._id));
+      const token = generateToken(newUser._id);
 
       const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "None",
       };
 
+
+      console.log(token)
       res.status(200)
       .cookie("jwt", token, options)
       .send({
@@ -61,6 +64,7 @@ class signupUser {
           lastName: lastName,
           userName: userName,
           email: newUser.email,
+          token: token,
         },
       });
     } catch (error) {
