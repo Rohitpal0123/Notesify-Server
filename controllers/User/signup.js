@@ -48,7 +48,7 @@ class signupUser {
 
       const options = {
         httpOnly: true,
-        secure: false,
+        secure: true,
       };
 
       res.status(200)
