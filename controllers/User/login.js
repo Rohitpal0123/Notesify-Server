@@ -29,11 +29,12 @@ class loginUser {
       const token = generateToken(user._id);
       const options = {
         httpOnly: true,
-        secure: true,
+        secure: false,
       };
 
 
-      res.status(200)
+      res
+      .status(200)
       .cookie("jwt", token, options)
       .send({
         type: RESPONSE_MESSAGE.SUCCESS,
