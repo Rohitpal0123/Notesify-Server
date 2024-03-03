@@ -50,6 +50,7 @@ class signupUser {
         httpOnly: true,
         secure: true,
         sameSite: "None",
+        domain: "notesify-three.vercel.app",
       };
 
 
