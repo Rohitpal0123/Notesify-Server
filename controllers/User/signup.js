@@ -43,8 +43,17 @@ class signupUser {
       });
 
       if (!newUser) throw "User not signed up !";
+      
+      const token = generateToken(newUser._id);
 
-      res.status(200).send({
+      const options = {
+        httpOnly: true,
+        secure: true,
+      };
+
+      res.status(200)
+      .cookie("jwt", token, options)
+      .send({
         type: RESPONSE_MESSAGE.SUCCESS,
         data: {
           _id: newUser._id,
@@ -52,7 +61,6 @@ class signupUser {
           lastName: lastName,
           userName: userName,
           email: newUser.email,
-          token: generateToken(newUser._id),
         },
       });
     } catch (error) {

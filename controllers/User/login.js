@@ -25,8 +25,17 @@ class loginUser {
 
       const isPassword = await bcrypt.compare(password, user.password);
       if (!isPassword) throw "Invalid password !";
+      
+      const token = generateToken(user._id);
+      const options = {
+        httpOnly: true,
+        secure: true,
+      };
 
-      res.status(200).send({
+
+      res.status(200)
+      .cookie("jwt", token, options)
+      .send({
         type: RESPONSE_MESSAGE.SUCCESS,
         data: {
           _id: user._id,
@@ -34,7 +43,6 @@ class loginUser {
           lastName: user.lastName,
           userName: user.userName,
           email: user.email,
-          token: generateToken(user._id)
         }
       });
     } catch (error) {
