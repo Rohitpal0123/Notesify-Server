@@ -44,7 +44,7 @@ class signupUser {
 
       if (!newUser) throw "User not signed up !";
       
-      const token = generateToken(newUser._id);
+      const token = JSON.stringify(generateToken(newUser._id));
 
       const options = {
         httpOnly: true,
