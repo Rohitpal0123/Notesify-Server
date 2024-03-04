@@ -48,9 +48,9 @@ class signupUser {
 
       const options = {
         httpOnly: true,
-        secure: true,
         sameSite: "None",
         domain: "notesify-three.vercel.app",
+        path: "/",
       };
 
 
