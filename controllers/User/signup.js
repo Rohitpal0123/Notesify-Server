@@ -49,7 +49,7 @@ class signupUser {
       const options = {
         httpOnly: true,
         secure: true,
-        sameSite: "none",
+        sameSite: "Strict",
         domain: "notesify-three.vercel.app",
       };
 
