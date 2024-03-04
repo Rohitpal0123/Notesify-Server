@@ -56,7 +56,6 @@ class signupUser {
 
       console.log(token)
       res.status(200)
-      .header('Access-Control-Expose-Headers', 'Set-Cookie')
       .cookie("jwt", token, options)
       .send({
         type: RESPONSE_MESSAGE.SUCCESS,

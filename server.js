@@ -7,6 +7,11 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 8000;
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Origin", "https://notesify-three.vercel.app/"); 
+});
+
 app.use(
   cors({
     origin: [
