@@ -27,15 +27,15 @@ class loginUser {
       if (!isPassword) throw "Invalid password !";
       
       const token = generateToken(user._id);
-      const options = {
-        httpOnly: true,
-        secure: false,
-      };
+      // const options = {
+      //   httpOnly: true,
+      //   secure: false,
+      // };
 
+      // .cookie("jwt", token, options)
 
       res
       .status(200)
-      .cookie("jwt", token, options)
       .send({
         type: RESPONSE_MESSAGE.SUCCESS,
         data: {
@@ -44,6 +44,7 @@ class loginUser {
           lastName: user.lastName,
           userName: user.userName,
           email: user.email,
+          token: token
         }
       });
     } catch (error) {
