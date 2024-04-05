@@ -4,11 +4,12 @@ const router = express.Router();
 const authenticateUser = require("../middleware/authMiddleware");
 
 const upload = multer({ storage: multer.memoryStorage() });
+console.log("🚀 ~ upload:", upload)
 
 router.post(
   "/generateSpeech",
   authenticateUser,
-  upload.single("audio"),
+  upload.single("text"),
   require("../controllers/Speech/generateSpeech").process
 );
 

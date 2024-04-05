@@ -40,6 +40,7 @@ class generateSpeech {
       console.log("Hit4")
       res.status(200).send(buffer);
     } catch (error) {
+      console.log("🚀 ~ error:", error)
       res.status(400).send({
         type: RESPONSE_MESSAGE.FAILED,
         error: error,
